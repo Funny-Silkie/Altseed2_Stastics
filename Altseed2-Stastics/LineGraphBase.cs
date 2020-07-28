@@ -242,7 +242,7 @@ namespace Altseed2.Stastics
         }
         private protected void AssignUpdate()
         {
-             foreach (var line in Lines) line.AssignUpdate();
+            foreach (var line in Lines) line.AssignUpdate();
         }
         /// <summary>
         /// <see cref="LineGraphBase"/>で描画される線のクラス

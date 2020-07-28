@@ -180,7 +180,9 @@ namespace Altseed2.Stastics
             private protected override void UpdateNodes()
             {
                 if (graph == null) return;
-                for (int i = 0; i < Nodes.Length; i++) graph.back.RemoveChildNode(Nodes[i]);
+                for (int i = 0; i < Nodes.Length; i++)
+                    if (Nodes[i] != null)
+                        graph.back.RemoveChildNode(Nodes[i]);
                 var array = _data.Length <= 1 ? new LineNode[1] : new LineNode[_data.Length - 1];
                 var x = graph.MaxX == 0 ? 0 : graph.GraphArea.Width / graph.MaxX;
                 var y = graph.GraphArea.Height / (graph._maxY - graph._minY);

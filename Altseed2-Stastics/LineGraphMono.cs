@@ -187,6 +187,7 @@ namespace Altseed2.Stastics
                     Color = Color,
                     Point1 = positions[0],
                     Point2 = positions[0],
+                    Position = positions[0],
                     Thickness = Thickness
                 };
                 else
@@ -196,10 +197,9 @@ namespace Altseed2.Stastics
                         array[i - 1] = new LineNode
                         {
                             Color = Color,
-                            Point1 = positions[i - 1],
-                            Point2 = positions[i],
                             Thickness = Thickness
                         };
+                        SetPos(array[i - 1], positions[i - 1], positions[i]);
                         graph.back.AddChildNode(array[i - 1]);
                     }
                 }

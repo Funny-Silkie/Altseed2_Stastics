@@ -101,10 +101,8 @@ namespace Altseed2.Stastics
             {
                 if (_graphArea == value) return;
                 _graphArea = value;
-                verticalLine.Point1 = value.Position;
-                verticalLine.Point2 = new Vector2F(value.X, value.Y + value.Height);
-                horizontalLine.Point1 = new Vector2F(value.X, value.Y + value.Height);
-                horizontalLine.Point2 = value.Position + value.Size;
+                SetPos(verticalLine, value.Position, new Vector2F(value.X, value.Y + value.Height));
+                SetPos(horizontalLine, new Vector2F(value.X, value.Y + value.Height), value.Position + value.Size);
                 labelX.Position = new Vector2F(value.X + value.Width / 2, (Size.Y + value.Y + value.Height) / 2);
                 labelY.Position = new Vector2F(value.X / 2, value.Y + value.Height / 2);
                 text_minX.Position = new Vector2F(value.X, value.Y + value.Height + AxisThickness);
@@ -234,6 +232,13 @@ namespace Altseed2.Stastics
             back.AddChildNode(text_maxY);
             back.AddChildNode(text_minX);
             back.AddChildNode(text_minY);
+        }
+        private protected static void SetPos(LineNode line, Vector2F point1, Vector2F point2)
+        {
+            if (line == null) return;
+            line.Point1 = point1;
+            line.Point2 = point2;
+            line.Position = new Vector2F(MathF.Min(point1.X, point2.X), MathF.Min(point1.Y, point2.Y));
         }
         private protected void AssignUpdate()
         {

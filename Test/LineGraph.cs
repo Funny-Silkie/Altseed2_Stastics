@@ -32,7 +32,7 @@ namespace Test
             graph.AddData(source, new Color(255, 100, 100), 3f);
             while (Engine.DoEvents())
             {
-                if (Engine.Keyboard.GetKeyState(Keys.S) == ButtonState.Push) Engine.Graphics.SaveScreenshot($"{nameof(TestMono)}.png");
+                if (Engine.Keyboard.GetKeyState(Key.S) == ButtonState.Push) Engine.Graphics.SaveScreenshot($"{nameof(TestMono)}.png");
                 Engine.Update();
             }
             Engine.Terminate();
@@ -65,7 +65,7 @@ namespace Test
             graph.AddData(new[] { new Vector2F(15f, 0f), new Vector2F(14f, 4f), new Vector2F(12f, 7f), new Vector2F(10f, 10f), new Vector2F(7f, 12f), new Vector2F(4f, 14f), new Vector2F(0, 15f) }, new Color(255, 100, 100), 3f);
             while (Engine.DoEvents())
             {
-                if (Engine.Keyboard.GetKeyState(Keys.S) == ButtonState.Push) Engine.Graphics.SaveScreenshot($"{nameof(TestDouble)}.png");
+                if (Engine.Keyboard.GetKeyState(Key.S) == ButtonState.Push) Engine.Graphics.SaveScreenshot($"{nameof(TestDouble)}.png");
                 Engine.Update();
             }
             Engine.Terminate();

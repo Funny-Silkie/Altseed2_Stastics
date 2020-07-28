@@ -82,6 +82,7 @@ namespace Altseed2.Stastics
             if (data == null) throw new ArgumentNullException(nameof(data), "引数がnullです");
             var result = new Line(data);
             AddChildNode(result);
+            lines.Add(result);
             return result;
         }
         /// <summary>
@@ -97,6 +98,7 @@ namespace Altseed2.Stastics
             if (data == null) throw new ArgumentNullException(nameof(data), "引数がnullです");
             var result = new Line(data, color, thickness);
             AddChildNode(result);
+            lines.Add(result);
             return result;
         }
         /// <summary>

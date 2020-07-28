@@ -295,6 +295,7 @@ namespace Altseed2.Stastics
                 _color = color;
             }
             internal void AssignUpdate() => mustUpdated = true;
+            /// <inheritdoc/>
             protected override void OnUpdate()
             {
                 if (mustUpdated)

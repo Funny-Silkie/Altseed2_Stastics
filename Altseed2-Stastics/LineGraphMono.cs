@@ -156,6 +156,7 @@ namespace Altseed2.Stastics
             {
                 Data = data;
             }
+            /// <inheritdoc/>
             protected override void OnAdded()
             {
                 if (Parent is LineGraphMono l)
@@ -165,6 +166,7 @@ namespace Altseed2.Stastics
                     AssignUpdate();
                 }
             }
+            /// <inheritdoc/>
             protected override void OnRemoved()
             {
                 if (graph != null)
@@ -177,7 +179,7 @@ namespace Altseed2.Stastics
             {
                 if (graph == null) return;
                 for (int i = 0; i < Nodes.Length; i++) graph.back.RemoveChildNode(Nodes[i]);
-                var array = _data.Length == 1 ? new LineNode[1] : new LineNode[_data.Length - 1];
+                var array = _data.Length <= 1 ? new LineNode[1] : new LineNode[_data.Length - 1];
                 var x = graph.MaxX == 0 ? 0 : graph.GraphArea.Width / graph.MaxX;
                 var y = graph.GraphArea.Height / (graph._maxY - graph._minY);
                 var positions = new Vector2F[_data.Length];

@@ -199,6 +199,9 @@ namespace Altseed2.Stastics
                 {
                     graph.lines.Remove(this);
                     graph = null;
+                    for (int i = 0; i < Nodes.Length; i++)
+                        if (Nodes[i] != null)
+                            graph.back.RemoveChildNode(Nodes[i]);
                 }
             }
             private protected override void UpdateNodes()

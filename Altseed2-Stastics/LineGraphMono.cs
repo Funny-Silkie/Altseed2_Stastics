@@ -109,7 +109,7 @@ namespace Altseed2.Stastics
         public bool RemoveData(Line line)
         {
             if (!lines.Contains(line)) return false;
-            back.RemoveChildNode(line);
+            RemoveChildNode(line);
             lines.Remove(line);
             var max = 0;
             foreach (var l in lines)
@@ -175,10 +175,8 @@ namespace Altseed2.Stastics
                 {
                     graph.lines.Remove(this);
                     graph = null;
-                    for (int i = 0; i < Nodes.Length; i++)
-                        if (Nodes[i] != null)
-                            graph.back.RemoveChildNode(Nodes[i]);
                 }
+                for (int i = 0; i < Nodes.Length; i++) Nodes[i]?.Parent?.RemoveChildNode(Nodes[i]);
             }
             private protected override void UpdateNodes()
             {

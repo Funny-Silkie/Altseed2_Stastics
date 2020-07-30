@@ -261,7 +261,9 @@ namespace Altseed2.Stastics
                 {
                     if (_color == value) return;
                     _color = value;
-                    for (int i = 0; i < Nodes.Length; i++) Nodes[i].Color = value;
+                    for (int i = 0; i < Nodes.Length; i++)
+                        if (Nodes[i] != null)
+                            Nodes[i].Color = value;
                 }
             }
             private Color _color = new Color(255, 255, 255);

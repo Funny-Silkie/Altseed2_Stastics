@@ -20,4 +20,13 @@
     <ProjectReference Include="..\Altseed2-Stastics\Altseed2-Stastics.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\GenYoMinJP-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\mplus-1m-regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

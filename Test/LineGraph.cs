@@ -7,6 +7,8 @@ namespace Test
 {
     class LineGraph
     {
+        private static readonly Font font_GenYo = Font.LoadDynamicFontStrict("Resources/GenYoMinJP-Bold.ttf", 30);
+        private static readonly Font font_mplus = Font.LoadDynamicFontStrict("Resources/mplus-1m-regular.ttf", 30);
         [Test]
         public void TestMono()
         {
@@ -17,12 +19,14 @@ namespace Test
                 BackColor = new Color(255, 255, 255),
                 GraphArea = new RectF(100, 50, 450, 450),
                 LabelColor = new Color(0, 0, 0),
+                LabelFont = Font.LoadDynamicFontStrict("Resources/GenYoMinJP-Bold.ttf", 30),
                 LabelX = "Index",
                 LabelY = "Value",
                 MaxY = 10f,
                 MinY = 0f,
                 Size = new Vector2F(600, 600),
-                ValueColor = new Color(0, 0, 0)
+                ValueColor = new Color(0, 0, 0),
+                ValueFont = Font.LoadDynamicFontStrict("Resources/GenYoMinJP-Bold.ttf", 30)
             };
             Engine.AddNode(graph);
             var source = new float[20];
@@ -47,12 +51,14 @@ namespace Test
                 BackColor = new Color(255, 255, 255),
                 GraphArea = new RectF(100, 50, 450, 450),
                 LabelColor = new Color(0, 0, 0),
+                LabelFont = Font.LoadDynamicFontStrict("Resources/GenYoMinJP-Bold.ttf", 30),
                 MaxX = 20f,
                 MaxY = 20f,
                 MinX = 0f,
                 MinY = 0f,
                 Size = new Vector2F(600, 600),
-                ValueColor = new Color(0, 0, 0)
+                ValueColor = new Color(0, 0, 0),
+                ValueFont = Font.LoadDynamicFontStrict("Resources/GenYoMinJP-Bold.ttf", 30)
             };
             Engine.AddNode(graph);
             //var source = new Vector2F[20];

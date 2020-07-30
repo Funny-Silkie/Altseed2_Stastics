@@ -9,22 +9,18 @@ namespace Altseed2.Stastics
     [Serializable]
     public abstract class LineGraphBase : Node
     {
-        private protected static readonly Font font_GenYo = Font.LoadDynamicFontStrict("Resources/GenYoMinJP-Bold.ttf", 30);
-        private protected static readonly Font font_mplus = Font.LoadDynamicFontStrict("Resources/mplus-1m-regular.ttf", 30);
         private protected readonly RectangleNode back = new RectangleNode()
         {
             Size = new Vector2F(400, 400)
         };
         private readonly TextNode labelX = new TextNode()
         {
-            Font = font_GenYo,
             Pivot = new Vector2F(0.5f, 0f),
             ZOrder = 1
         };
         private readonly TextNode labelY = new TextNode()
         {
             Angle = -90f,
-            Font = font_GenYo,
             Pivot = new Vector2F(0.5f, 1.0f),
             ZOrder = 1
         };
@@ -34,27 +30,23 @@ namespace Altseed2.Stastics
         };
         private protected readonly TextNode text_maxX = new TextNode()
         {
-            Font = font_GenYo,
             Pivot = new Vector2F(1f, 0f),
             Text = "0",
             ZOrder = 1
         };
         private protected readonly TextNode text_maxY = new TextNode()
         {
-            Font = font_GenYo,
             Pivot = new Vector2F(1f, 0f),
             Text = "1",
             ZOrder = 1
         };
         private protected readonly TextNode text_minX = new TextNode()
         {
-            Font = font_GenYo,
             Text = "0",
             ZOrder = 1
         };
         private protected readonly TextNode text_minY = new TextNode()
         {
-            Font = font_GenYo,
             Pivot = new Vector2F(1f, 1f),
             Text = "0",
             ZOrder = 1

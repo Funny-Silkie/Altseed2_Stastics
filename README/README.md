@@ -1,0 +1,2 @@
+# Altseed2_Stastics
+グラフのプロトなどをAltseed2上で行えるライブラリです

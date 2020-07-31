@@ -222,26 +222,15 @@ namespace Altseed2.Stastics
                 var y = graph.GraphArea.Height / (graph._maxY - graph._minY);
                 var positions = new Vector2F[_data.Length];
                 for (int i = 0; i < _data.Length; i++) positions[i] = new Vector2F((x - graph._minX) * _data[i].X + graph.GraphArea.X, graph.GraphArea.Y + graph.GraphArea.Height - y * (_data[i].Y - graph._minY));
-                if (positions.Length == 1) array[0] = new LineNode()
+                if (positions.Length == 1)
                 {
-                    Color = Color,
-                    Point1 = positions[0],
-                    Point2 = positions[0],
-                    Position = positions[0],
-                    Thickness = Thickness
-                };
-                else
-                {
-                    for (int i = 1; i < positions.Length; i++)
-                    {
-                        array[i - 1] = new LineNode
-                        {
-                            Color = Color,
-                            Thickness = Thickness
-                        };
-                        SetPos(array[i - 1], positions[i - 1], positions[i]);
-                    }
+                    array[0].Point1 = positions[0];
+                    array[0].Point2 = positions[0];
+                    array[0].Position = positions[0];
                 }
+                else
+                    for (int i = 1; i < positions.Length; i++)
+                        SetPos(array[i - 1], positions[i - 1], positions[i]);
                 if (count < array.Length)
                     for (int i = count; i < array.Length; i++)
                         graph.back.AddChildNode(array[i]);

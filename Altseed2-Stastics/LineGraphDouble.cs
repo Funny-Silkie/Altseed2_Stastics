@@ -205,10 +205,19 @@ namespace Altseed2.Stastics
             private protected override void UpdateNodes()
             {
                 if (graph == null) return;
-                for (int i = 0; i < Nodes.Length; i++)
-                    if (Nodes[i] != null)
-                        graph.back.RemoveChildNode(Nodes[i]);
-                var array = _data.Length <= 1 ? new LineNode[1] : new LineNode[_data.Length - 1];
+                var count = Math.Min(_data.Length <= 1 ? 1 : _data.Length - 1, Nodes.Length);
+                var array = new LineNode[_data.Length <= 1 ? 1 : _data.Length - 1];
+                Array.Copy(Nodes, array, count);
+                if (count < array.Length)
+                    for (int i = count; i < array.Length; i++)
+                        array[i] = new LineNode()
+                        {
+                            Color = Color,
+                            Thickness = Thickness
+                        };
+                else
+                    for (int i = count; i < Nodes.Length; i++)
+                        Nodes[i]?.Parent?.RemoveChildNode(Nodes[i]);
                 var x = graph.GraphArea.Width / (graph._maxX - graph._minX);
                 var y = graph.GraphArea.Height / (graph._maxY - graph._minY);
                 var positions = new Vector2F[_data.Length];
@@ -231,9 +240,11 @@ namespace Altseed2.Stastics
                             Thickness = Thickness
                         };
                         SetPos(array[i - 1], positions[i - 1], positions[i]);
-                        graph.back.AddChildNode(array[i - 1]);
                     }
                 }
+                if (count < array.Length)
+                    for (int i = count; i < array.Length; i++)
+                        graph.back.AddChildNode(array[i]);
                 Nodes = array;
             }
             [Serializable]

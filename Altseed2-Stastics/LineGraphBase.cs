@@ -11,17 +11,15 @@ namespace Altseed2.Stastics
     {
         private protected readonly RectangleNode back = new RectangleNode()
         {
-            Size = new Vector2F(400, 400)
+            RectangleSize = new Vector2F(400, 400)
         };
         private readonly TextNode labelX = new TextNode()
         {
-            Pivot = new Vector2F(0.5f, 0f),
             ZOrder = 1
         };
         private readonly TextNode labelY = new TextNode()
         {
             Angle = -90f,
-            Pivot = new Vector2F(0.5f, 1.0f),
             ZOrder = 1
         };
         private readonly LineNode horizontalLine = new LineNode()
@@ -30,13 +28,11 @@ namespace Altseed2.Stastics
         };
         private protected readonly TextNode text_maxX = new TextNode()
         {
-            Pivot = new Vector2F(1f, 0f),
             Text = "0",
             ZOrder = 1
         };
         private protected readonly TextNode text_maxY = new TextNode()
         {
-            Pivot = new Vector2F(1f, 0f),
             Text = "1",
             ZOrder = 1
         };
@@ -47,7 +43,6 @@ namespace Altseed2.Stastics
         };
         private protected readonly TextNode text_minY = new TextNode()
         {
-            Pivot = new Vector2F(1f, 1f),
             Text = "0",
             ZOrder = 1
         };
@@ -128,8 +123,9 @@ namespace Altseed2.Stastics
                 if (labelX.Font == value) return;
                 labelX.Font = value;
                 labelY.Font = value;
-                labelX.AdjustSize();
-                labelY.AdjustSize();
+                labelX.CenterPosition = new Vector2F(labelX.ContentSize.X / 2f, 0f);
+                var sizeY = labelY.ContentSize;
+                labelY.CenterPosition = new Vector2F(sizeY.X / 2f, sizeY.Y);
             }
         }
         /// <summary>
@@ -141,7 +137,7 @@ namespace Altseed2.Stastics
             set
             {
                 labelX.Text = value;
-                labelX.AdjustSize();
+                labelX.CenterPosition = new Vector2F(labelX.ContentSize.X / 2f, 0f);
             }
         }
         /// <summary>
@@ -153,7 +149,8 @@ namespace Altseed2.Stastics
             set
             {
                 labelY.Text = value;
-                labelY.AdjustSize();
+                var sizeY = labelY.ContentSize;
+                labelY.CenterPosition = new Vector2F(sizeY.X / 2, sizeY.Y);
             }
         }
         private protected abstract IEnumerable<LineBase> Lines { get; }
@@ -166,10 +163,10 @@ namespace Altseed2.Stastics
         /// </summary>
         public Vector2F Size
         {
-            get => back.Size;
+            get => back.RectangleSize;
             set
             {
-                back.Size = value;
+                back.RectangleSize = value;
                 labelX.Position = new Vector2F(_graphArea.X + _graphArea.Width / 2, (value.Y + _graphArea.Y + _graphArea.Height) / 2);
             }
         }
@@ -200,10 +197,9 @@ namespace Altseed2.Stastics
                 text_maxY.Font = value;
                 text_minX.Font = value;
                 text_minY.Font = value;
-                text_maxX.AdjustSize();
-                text_maxY.AdjustSize();
-                text_minX.AdjustSize();
-                text_minY.AdjustSize();
+                text_maxX.CenterPosition = new Vector2F(text_maxX.ContentSize.X, 0f);
+                text_maxY.CenterPosition = new Vector2F(text_maxY.ContentSize.X, 0f);
+                text_minY.CenterPosition = text_minY.ContentSize;
             }
         }
         /// <summary>
@@ -211,10 +207,6 @@ namespace Altseed2.Stastics
         /// </summary>
         protected LineGraphBase()
         {
-            text_maxX.AdjustSize();
-            text_maxY.AdjustSize();
-            text_minX.AdjustSize();
-            text_minY.AdjustSize();
             AddChildNode(back);
             back.AddChildNode(labelX);
             back.AddChildNode(labelY);
@@ -230,7 +222,7 @@ namespace Altseed2.Stastics
             if (line == null) return;
             line.Point1 = point1;
             line.Point2 = point2;
-            line.Position = new Vector2F(MathF.Min(point1.X, point2.X), MathF.Min(point1.Y, point2.Y));
+            //line.Position = new Vector2F(MathF.Min(point1.X, point2.X), MathF.Min(point1.Y, point2.Y));
         }
         private protected void AssignUpdate()
         {

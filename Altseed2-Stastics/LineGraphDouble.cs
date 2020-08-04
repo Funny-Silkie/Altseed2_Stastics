@@ -25,7 +25,7 @@ namespace Altseed2.Stastics
                 if (_minX >= value) throw new ArgumentOutOfRangeException(nameof(value), $"設定しようとした値がMin({_minX})以下です\n設定しようとした値：{value}");
                 _maxX = value;
                 text_maxX.Text = value.ToString();
-                text_maxX.AdjustSize();
+                text_maxX.CenterPosition = new Vector2F(text_maxX.ContentSize.X, 0f);
                 AssignUpdate();
             }
         }
@@ -43,7 +43,7 @@ namespace Altseed2.Stastics
                 if (_minY >= value) throw new ArgumentOutOfRangeException(nameof(value), $"設定しようとした値がMin({_minY})以下です\n設定しようとした値：{value}");
                 _maxY = value;
                 text_maxY.Text = value.ToString();
-                text_maxY.AdjustSize();
+                text_maxY.CenterPosition = new Vector2F(text_maxY.CenterPosition.Y, 0f);
                 AssignUpdate();
             }
         }
@@ -61,7 +61,6 @@ namespace Altseed2.Stastics
                 if (_maxX <= value) throw new ArgumentOutOfRangeException(nameof(value), $"設定しようとした値がMax({_maxX})以上です\n設定しようとした値：{value}");
                 _minX = value;
                 text_minX.Text = value.ToString();
-                text_minX.AdjustSize();
                 AssignUpdate();
             }
         }
@@ -79,7 +78,7 @@ namespace Altseed2.Stastics
                 if (_maxY <= value) throw new ArgumentOutOfRangeException(nameof(value), $"設定しようとした値がMax({_maxY})以上です\n設定しようとした値：{value}");
                 _minY = value;
                 text_minY.Text = value.ToString();
-                text_minY.AdjustSize();
+                text_minY.CenterPosition = text_minY.ContentSize;
                 AssignUpdate();
             }
         }
@@ -226,7 +225,7 @@ namespace Altseed2.Stastics
                 {
                     array[0].Point1 = positions[0];
                     array[0].Point2 = positions[0];
-                    array[0].Position = positions[0];
+                    //array[0].Position = positions[0];
                 }
                 else
                     for (int i = 1; i < positions.Length; i++)
